@@ -1,5 +1,5 @@
 # Novetta-WIFI-LAB-1
-Notes and code from Novetta-WIFI-LAB-1
+Notes and code from Novetta-WIFI-LAB-1 17OCT2019
 
 This is the firts WIFI LAB and class as apart of the Wireless Workshop hosted in Columbia MD.
 This lab covered WEP and WPA2 hacking basics.
