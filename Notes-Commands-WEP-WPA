@@ -1,10 +1,6 @@
 Wireless Workshop One
 
-These examples are for the most basic WEP and WPA2 example networks from class.
 
-These attacks will not work for all instances of WEP and WPA2
-
-changes and updates will be applied as needed
 
 TOOL INTRO
 
@@ -21,6 +17,8 @@ TOOL INTRO
 airmon-ng
 
 airmon-ng start wlanX
+
+airmon-ng start wlanX <channel number>
 
 #if you have problems you need to check or check kill
 #usually wpasuplicant or Network Manager is a problem
@@ -78,9 +76,9 @@ airodump-ng -b abg -R WIFI_LAB wlanXmon
 
 #put it all together when ready
 
-airodump-ng --bssid XX:XX:XX:XX:XX:XX -c X -r test wlanXmon
+airodump-ng --bssid XX:XX:XX:XX:XX:XX -c X -w test wlanXmon
 
-airodump-ng --bssid XX:XX:XX:XX:XX:XX -c X -b abg -r test wlanXmon
+airodump-ng --bssid XX:XX:XX:XX:XX:XX -c X -b abg -w test wlanXmon
 
 #isolate and filter down to just what you need to make your pcap more managable
 
@@ -136,7 +134,7 @@ airodump-ng wlanXmon
 
 -Collect
 
-airodump-ng --bssid XX:XX:XX:XX:XX:XX -c X -b abg -r test wlanXmon
+airodump-ng --bssid XX:XX:XX:XX:XX:XX -c X -b abg -w test wlanXmon
 
 TAB2
 -Fake Auth
@@ -162,7 +160,7 @@ airodump-ng wlanXmon
 
 -Collect
 
-airodump-ng --bssid XX:XX:XX:XX:XX:XX -c X -b abg -r test wlanXmon
+airodump-ng --bssid XX:XX:XX:XX:XX:XX -c X -b abg -w test wlanXmon
 
 TAB2
 
